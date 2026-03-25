@@ -4,8 +4,12 @@
   "version": "${version}",
   "name": "Old F3 Debug Screen",
   "description": "Reverts the debug screen / hud to the look before 1.21.9",
-  "authors": [],
-  "contact": {},
+  "authors": [
+    "MrPotato"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/old-f3-debug-screen"
+  },
   "license": "MIT",
   "icon": "assets/old-f3-debug-screen/icon.png",
   "environment": "client",

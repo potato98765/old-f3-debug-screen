@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "old-f3-debug-screen",
+  "version": "${version}",
+  "name": "Old F3 Debug Screen",
+  "description": "Reverts the debug screen / hud to the look before 1.21.9",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/old-f3-debug-screen/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.mrpotato.oldf3debugscreen.client.OldF3DebugScreenClient"
+    ],
+    "main": [
+      "com.mrpotato.oldf3debugscreen.OldF3DebugScreen"
+    ]
+  },
+  "mixins": [
+    "old-f3-debug-screen.mixins.json",
+    {
+      "config": "old-f3-debug-screen.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "java": ">=25",
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "~${minecraft_version}"
+  }
+}

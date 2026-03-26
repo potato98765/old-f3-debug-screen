@@ -5,10 +5,6 @@ import java.lang.management.ManagementFactory;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Mirrors the private DebugHud$AllocationRateCalculator inner class.
- * Kept as its own class so we never have to access an inaccessible type via reflection.
- */
 public class AllocationRateCalculator {
 
     private static final long INTERVAL_MS = 500L;
@@ -20,7 +16,6 @@ public class AllocationRateCalculator {
     private long lastGcCount = -1L;
     private long allocationRate = 0L;
 
-    /** Returns the smoothed allocation rate in bytes/second. */
     public long get(long currentAllocBytes) {
         long now = System.currentTimeMillis();
         if (now - lastTime < INTERVAL_MS) {

@@ -59,14 +59,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/**
- * Contains the full classic F3 debug text generation logic.
- * All Minecraft data access goes through {@link DebugHudContext}.
- * Static helper methods mirror the private methods that were in the old DebugHud.
- *
- * MC API wrappers are grouped at the bottom. If Mojang renames or restructures
- * any of these, only the wrapper needs updating.
- */
 @Environment(EnvType.CLIENT)
 public final class OldDebugHudProvider {
 
@@ -81,10 +73,7 @@ public final class OldDebugHudProvider {
 
     private OldDebugHudProvider() {}
 
-    // =========================================================================
     // Left panel
-    // =========================================================================
-
     public static List<String> getLeftText(DebugHudContext ctx) {
         Minecraft client = ctx.client();
         IntegratedServer integratedServer = client.getSingleplayerServer();
@@ -126,7 +115,7 @@ public final class OldDebugHudProvider {
 
         BlockPos blockPos = client.getCameraEntity().blockPosition();
 
-        // ---- Reduced debug info path ----------------------------------------
+        // Reduced debug info
         if (client.showOnlyReducedInfo()) {
             return Lists.newArrayList(
                     "Minecraft " + SharedConstants.getCurrentVersion().name()
@@ -143,7 +132,7 @@ public final class OldDebugHudProvider {
             );
         }
 
-        // ---- Full debug info path -------------------------------------------
+        // Full debug info
         Entity entity = client.getCameraEntity();
         Direction direction = entity.getDirection();
         String facingDesc = switch (direction) {
@@ -279,10 +268,7 @@ public final class OldDebugHudProvider {
         return list;
     }
 
-    // =========================================================================
     // Right panel
-    // =========================================================================
-
     public static List<String> getRightText(DebugHudContext ctx) {
         Minecraft client = ctx.client();
         long maxMem   = Runtime.getRuntime().maxMemory();
@@ -343,10 +329,7 @@ public final class OldDebugHudProvider {
         return list;
     }
 
-    // =========================================================================
-    // Private helpers (mirrors of old DebugHud private methods)
-    // =========================================================================
-
+    // Private helpers
     @Nullable
     private static ServerLevel getServerWorld(Minecraft client) {
         IntegratedServer server = client.getSingleplayerServer();
@@ -400,11 +383,7 @@ public final class OldDebugHudProvider {
         return bytes / 1024L / 1024L;
     }
 
-    // =========================================================================
-    // MC API wrappers — update here if Mojang renames/restructures these
-    // =========================================================================
-
-    // -- FPS / render options -------------------------------------------------
+    // FPS / render options
     private static int getFps(Minecraft client) {
         return client.getFps();
     }
@@ -425,7 +404,7 @@ public final class OldDebugHudProvider {
         return client.options.biomeBlendRadius().get();
     }
 
-    // -- World renderer / managers --------------------------------------------
+    // World renderer / managers
     private static String getChunksDebugString(Minecraft client) {
         return client.level.gatherChunkSourceStats();
     }
@@ -451,7 +430,7 @@ public final class OldDebugHudProvider {
         return client.gameRenderer.currentPostEffect();
     }
 
-    // -- Network / tick timing ------------------------------------------------
+    // Network / tick timing
     private static float getAveragePacketsSent(Connection connection) {
         return connection.getAverageSentPackets();
     }
@@ -472,7 +451,7 @@ public final class OldDebugHudProvider {
         return server.getAverageTickTimeNanos() / 1_000_000.0f;
     }
 
-    // -- GPU / hardware -------------------------------------------------------
+    // GPU
     private static String getCpuInfo() {
         return GLX._getCpuInfo();
     }

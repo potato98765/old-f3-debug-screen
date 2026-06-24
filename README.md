@@ -1,6 +1,6 @@
 # Description
 
-Adds back the F3/Debug Screen that was in Minecraft before 1.21.9 if you don like the new version.
+Adds back the F3/Debug Screen that was in Minecraft before 1.21.9 if you dont like the new version.
 
 
 | Game Version | Mod Version | Status         |
